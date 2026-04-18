@@ -1,0 +1,69 @@
+.input,
+.textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border: 1px solid #050b14;
+  border-radius: 6px;
+  background-color: #bfbfc3;
+  color: #161717;
+  font-weight: 900;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #878b8d;
+  color: #f1f5f9;
+  font-weight: 900;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: 30px;
+  margin: 30px;
+  border-radius: 10px;
+  background-image: url("https://i.pinimg.com/736x/3b/c6/ab/3bc6ab91240a70d2a93cd331833d5e66.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.formContent {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.imageBox {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageBox img {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .flex {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .formContent,
+  .imageBox {
+    width: 100%;
+  }
+}
