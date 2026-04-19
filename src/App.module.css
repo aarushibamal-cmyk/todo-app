@@ -1,0 +1,13 @@
+.app {
+  min-height: 100vh;
+  background: #eef0f7;
+  display: flex;
+  flex-direction: column;
+}
+
+.listSection {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  width: 100%;
+}

@@ -1,35 +1,62 @@
 import React, { useState } from 'react'
 import styles from './Task.module.css'
 
-const Task = ({taskDetail,taskName,setTaskDetail,setTaskName,handleSave}) => {
+const Task = ({ dispatch }) => {
+  const [taskName, setTaskName] = useState('')
+  const [taskDetail, setTaskDetail] = useState('')
 
-     const submitHandle=(e) =>{
-    e.preventDefault();
-    console.log("working button")
-    handleSave();  
-    setTaskDetail('');
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (!taskName.trim()) return
+    dispatch({ type: 'ADD', taskName: taskName.trim(), taskDetail: taskDetail.trim() })
     setTaskName('')
-
+    setTaskDetail('')
   }
-  return (
-    <div>
-      <form className={styles.flex} onSubmit={(e)=>{
-        submitHandle(e)
-      }}>
-       <div className={styles.formContent}>
-         <input className={styles.input} type='text' placeholder='Enter your task' value={taskName}  onChange={(task)=>{
-           setTaskName(task.target.value)
-         }}></input>
-        <input className={styles.textarea}name='detail' id='details' placeholder='Enter Details of your task'  value={taskDetail} onChange={(detail)=>{
-            setTaskDetail(detail.target.value)
-        }}></input>
 
-        <button className={styles.button}>Save Task</button>
-       </div>
-       <div className={styles.imageBox}>
-        <img src='https://i.pinimg.com/736x/4c/66/1c/4c661c33e230bd4431c105b53627557a.jpg'></img>
+  const today = new Date().toLocaleDateString('en-GB', {
+    day: 'numeric', month: 'long', year: 'numeric', weekday: 'long'
+  })
+
+  return (
+    <div className={styles.wrapper}>
+
+      <div className={styles.hero}>
+        <div className={styles.heroText}>
+          <h1 className={styles.title}>Welcome back!</h1>
+          <p className={styles.subtitle}>Stay on top of your tasks — you've got this.</p>
         </div>
-      </form>
+        <img
+          className={styles.heroImg}
+          src="https://i.pinimg.com/736x/4c/66/1c/4c661c33e230bd4431c105b53627557a.jpg"
+          alt="illustration"
+        />
+      </div>
+
+      <div className={styles.topBar}>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.inputWrap}>
+            <span className={styles.searchIcon}>⌕</span>
+            <input
+              className={styles.input}
+              type="text"
+              placeholder="Add a new task..."
+              value={taskName}
+              onChange={(e) => setTaskName(e.target.value)}
+            />
+          </div>
+          <div className={styles.detailInput}>
+            <input
+              type="text"
+              placeholder="Task details (optional)"
+              value={taskDetail}
+              onChange={(e) => setTaskDetail(e.target.value)}
+            />
+          </div>
+          <button className={styles.button} type="submit">+ Add Task</button>
+        </form>
+        <span className={styles.dateLabel}>{today}</span>
+      </div>
+
     </div>
   )
 }
